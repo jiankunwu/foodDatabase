@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import Resource from 'vue-resource'
 import databaseHome from '@/pages/databaseHome'
 import databaseDetail from '@/pages/databaseDetail'
-import databaseHomeList from '@/components/databaseHomeList'
+import myTest from '@/components/myTest'
 import databaseHomeLists from '@/children/databaseHomeLists'
 import databaseFavourite from '@/children/databaseFavourite'
 
@@ -37,6 +37,10 @@ export default new Router({
             path: '/databaseDetail',
             name: 'databaseDetail',
             component: databaseDetail
+        }, {
+            path: '/myTest',
+            name: 'myTest',
+            component: myTest
         }
     ]
 })

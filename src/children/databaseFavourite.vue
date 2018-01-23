@@ -14,11 +14,12 @@
             <el-table-column label="Delete" className="abFavouriteDelete">
                 <template slot-scope="deleteScope">
                     <el-button class="el-icon-close" type="text" @click="deleteRowId(deleteScope.row.id)"></el-button>
-                    <el-dialog top="25vh" title="TIPS" :visible.sync="dialogVisible" width="30%">
+                    <el-dialog top="25vh" title="TIPS" :visible.sync="deleteDialog" width="30%">
                         <span>Will give up the collection, will it continue?</span>
                         <span slot="footer" class="dialog-footer">
-                            <el-button  style="padding: 7px 13px" type="info" plain @click="dialogVisible = false">Cancel</el-button>
-                            <el-button  style="padding: 7px 13px" type="success" @click="deleteRow">Confirm</el-button>
+                            <el-button style="padding: 7px 13px" type="info" plain
+                                       @click="deleteDialog = false">Cancel</el-button>
+                            <el-button style="padding: 7px 13px" type="success" @click="deleteRow">Confirm</el-button>
                         </span>
                     </el-dialog>
                 </template>
@@ -31,8 +32,8 @@
         name: 'databaseFavourite',
         data() {
             return {
-                dialogVisible: false,
-                dbDeleteRowId:-1,
+                deleteDialog: false,
+                dbDeleteRowId: -1,
                 tableFavouriteData: [
                     {
                         date: '1China November 2017 Non-Compliant Imported Food Data..',
@@ -66,22 +67,21 @@
                         switchValue: true
                     }
                 ],
-
             }
         },
         methods: {
             favouriteDetail: function (row, column, cell, event) {
                 if (column.className === 'column1') {
-                    this.$router.push({path: '/databaseDetail?#id='+row.id});
+                    this.$router.push({path: '/databaseDetail?#id=' + row.id});
                     console.log(row.id)
                 }
             },
             updateControl: function (status, id) {
                 console.log(status, id)
             },
-            deleteRowId:function (id) {
-                this.dbDeleteRowId=id;
-                this.dialogVisible = true;
+            deleteRowId: function (id) {
+                this.dbDeleteRowId = id;
+                this.deleteDialog = true;
             },
             deleteRow: function () {
                 let newTableFavouriteData = [];
@@ -91,7 +91,7 @@
                     }
                 }
                 this.tableFavouriteData = newTableFavouriteData;
-                this.dialogVisible = false
+                this.deleteDialog = false
             },
 
         }
@@ -101,7 +101,7 @@
     #databaseFavourite {
         $borderColor: #c5a835;
         $textColor: #5a5050;
-        h1{
+        h1 {
             color: $textColor;
             border-bottom: 2px solid $borderColor;
             margin: 0 0 25px 0;
@@ -159,14 +159,14 @@
                     color: #f00e45;
                 }
             }
-            .el-dialog{
+            .el-dialog {
                 text-align: left;
                 border-radius: 10px;
-                box-shadow:0 0 5px #757070;
-                .el-dialog__title{
+                box-shadow: 0 0 5px #757070;
+                .el-dialog__title {
                     font-weight: 600;
                 }
-                .el-dialog__body{
+                .el-dialog__body {
                     font-size: 17px;
                     padding: 13px 20px;
                 }
