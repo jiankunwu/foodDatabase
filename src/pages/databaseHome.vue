@@ -19,11 +19,21 @@
                     </ul>
                     <span> > </span>
                     <div>
-                        <input type="text" disabled v-model="dbNavStatus">
+                        <div @click.stop="listStatusFlag=!listStatusFlag">
+                            <input type="text" disabled v-model="dbNavStatus">
+                        </div>
                         <span class="el-icon-caret-bottom" @click.stop="listStatusFlag=!listStatusFlag"></span>
-                        <ul class="statusList" v-show="listStatusFlag">
-                            <li v-for="statusItem in dbStatusData" @click="statusChange(statusItem)">{{statusItem}}</li>
-                        </ul>
+                        <div class="transitionList">
+                            <span class="dbTriangle el-icon-caret-top" v-show="listStatusFlag"></span>
+                            <transition name="showMenu">
+                                <ul class="statusList" v-show="listStatusFlag">
+                                    <li v-for="statusItem in dbStatusData" @click="statusChange(statusItem)">
+                                        {{statusItem}}
+                                    </li>
+                                </ul>
+                            </transition>
+                        </div>
+
                     </div>
                 </div>
             </el-header>
@@ -58,7 +68,7 @@
                 dbNavStatus: 'Status',
                 dbNavActiveIndex: 0,
                 dbHomeNavData: ['All', 'General', 'Product', 'Hygienic', 'Testing', 'Packing&Transpirtation', 'Other', 'Regulation'],
-                dbStatusData: ['Name', 'Implementation date', 'Status', 'Details',],
+                dbStatusData: ['In force', ' To be enforced', 'Invalid',],
                 dbHomeTreeData: [
                     {
                         id: 1,
@@ -198,9 +208,10 @@
                     }
 
                 }
+
                 > div {
                     display: inline-block;
-                    width: 164px;
+                    width: 140px;
                     height: 25px;
                     float: right;
                     position: relative;
@@ -215,7 +226,7 @@
                         outline: none;
                         color: $textColor;
                     }
-                    span {
+                    .el-icon-caret-bottom {
                         position: absolute;
                         right: 10px;
                         top: 50%;
@@ -226,9 +237,34 @@
                         margin-top: -11px;
                         cursor: pointer;
                     }
+                    .transitionList{
+                        position: relative;
+                    }
+                    .dbTriangle{
+                        position: absolute;
+                        top: -5px;
+                        left: 45%;
+                        font-size: 20px;
+                        z-index: 9999;
+                    }
+
+                    .showMenu-enter {
+                        height: 0;
+                    }
+                    .showMenu-enter-active {
+                        transition: all .5s;
+                    }
+                    .showMenu-enter-to {
+                        height: 78px;
+                    }
+                    .showMenu-leave,
+                    .showMenu-leave-active,
+                    .showMenu-leave-to {
+                        height: 0;
+                    }
                     ul {
                         position: absolute;
-                        top: 28px;
+                        top: 7px;
                         right: 3px;
                         background-color: white;
                         list-style: none;
@@ -236,9 +272,11 @@
                         z-index: 2018;
                         padding: 5px 0;
                         box-shadow: 0 0 4px #e8dfd0;
+                        height: 78px;
+                        overflow: hidden;
                         li {
                             color: $textColor;
-                            padding: 5px 15px;
+                            padding: 5px 20px;
                             font-size: 12px;
                             cursor: pointer;
                             &:hover {

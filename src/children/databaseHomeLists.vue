@@ -13,7 +13,7 @@
             </el-table-column>
         </el-table>
         <el-pagination background layout="pager" :page-size="10" align="center"
-                       @current-change="dbJumpPages" :total="1000">
+                       @current-change="dbJumpPages" :total="totalPages">
         </el-pagination>
     </div>
 </template>
@@ -22,6 +22,7 @@
         name: 'databaseHomeLists',
         data() {
             return {
+                totalPages:1000,
                 tableListsData: [
                     {
                         date: 'China November 2017 Non-Compliant Imported Food Data..',

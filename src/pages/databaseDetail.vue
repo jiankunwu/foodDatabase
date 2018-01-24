@@ -8,7 +8,7 @@
                 </div>
             </el-header>
             <el-container class="dbDetailContainer">
-                <el-main>
+                <el-main width="750px">
                     <h4>GB 10765-2010 National Food Safety Standard Infant formula</h4>
                     <ul class="shareLists">
                         <li>
@@ -55,7 +55,7 @@
                         </li>
                     </ul>
                     <div class="dbStoreAlert">
-                        <el-dialog title="TIPS" :visible.sync="dbStoreDialog" width="30%">
+                        <el-dialog title="TIPS" :visible.sync="dbStoreDialog" width="30%" :modal="false" :close-on-click-modal="false">
                             <span>Alert me for further updates?</span>
                             <span slot="footer" class="dialog-footer">
                                 <el-button style="padding: 7px 13px" type="info" plain @click="dbStoreDialog = false">Cancel</el-button>
@@ -66,8 +66,7 @@
                     <h5>Basic information </h5>
                     <el-table :data="tableDetailData" border style="width: 100%"
                               empty-text="Nothing">
-                        <el-table-column prop="date" label="Local name" className="column1"
-                                         width="260"></el-table-column>
+                        <el-table-column prop="date" label="Local name" className="column1" width="260"></el-table-column>
                         <el-table-column prop="name" label="食品安全国际标准 婴儿配方产品"></el-table-column>
                     </el-table>
 
@@ -200,7 +199,7 @@
             text-decoration: none;
         }
         .dbDetailHeader {
-            padding: 0 40px;
+            padding: 0 100px;
             box-sizing: border-box;
             width: 100%;
             line-height: 80px;
