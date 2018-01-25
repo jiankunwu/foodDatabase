@@ -33,7 +33,6 @@
                                 </ul>
                             </transition>
                         </div>
-
                     </div>
                 </div>
             </el-header>
@@ -63,6 +62,7 @@
         name: 'DatabaseHome',
         data() {
             return {
+                favouriteFlag:false,
                 dbSearchText: '',
                 listStatusFlag: false,
                 dbNavStatus: 'Status',
@@ -120,10 +120,18 @@
             }
         },
         methods: {
+            changeList:function () {
+                if(this.favouriteFlag){
+                    this.$router.push({path: '/DatabaseHome/databaseHomeLists'});
+                    this.favouriteFlag=false;
+                }
+            },
             toFavourite: function () {
+                this.favouriteFlag=true;
                 this.$router.push({path: '/DatabaseHome/databaseFavourite'})
             },
             dbNavClick: function (data) {
+                this.changeList();
                 this.dbNavActiveIndex = data;
             },
             statusChange: function (data) {
@@ -131,6 +139,7 @@
                 this.listStatusFlag = !this.listStatusFlag
             },
             dbHomeNodeClick: function (data) {
+                this.changeList();
                 console.log(data.id)
             },
 

@@ -106,7 +106,7 @@
                 console.log(data)
             },
             enterDetail: function (index, id) {
-                this.$router.push({path: '/databaseDetail?#id='+id});
+                this.$router.push({path:'/databaseDetail?#id='+id});
                 console.log(id);
             },
 
