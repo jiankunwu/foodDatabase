@@ -3,7 +3,7 @@
         <el-container>
             <el-header class="dbDetailHeader" style="height: 80px;">
                 <div>
-                    <a href="#">Home</a>
+                    <a href="#/DatabaseHome">Home</a>
                     <a href="#">Contact Us</a>
                 </div>
             </el-header>
@@ -55,7 +55,8 @@
                         </li>
                     </ul>
                     <div class="dbStoreAlert">
-                        <el-dialog title="TIPS" :visible.sync="dbStoreDialog" width="30%" :modal="false" :close-on-click-modal="false">
+                        <el-dialog title="TIPS" :visible.sync="dbStoreDialog" width="30%" :modal="false"
+                                   :close-on-click-modal="false">
                             <span>Alert me for further updates?</span>
                             <span slot="footer" class="dialog-footer">
                                 <el-button style="padding: 7px 13px" type="info" plain @click="dbStoreDialog = false">Cancel</el-button>
@@ -66,8 +67,9 @@
                     <h5>Basic information </h5>
                     <el-table :data="tableDetailData" border style="width: 100%"
                               empty-text="Nothing">
-                        <el-table-column prop="date" label="Local name" className="column1" width="260"></el-table-column>
-                        <el-table-column prop="name" label="食品安全国际标准 婴儿配方产品"></el-table-column>
+                        <el-table-column :resizable="false" prop="date" label="Local name" className="column1"
+                                         width="260"></el-table-column>
+                        <el-table-column :resizable="false" prop="name" label="食品安全国际标准 婴儿配方产品"></el-table-column>
                     </el-table>
 
                     <h5>Introduction </h5>
@@ -164,21 +166,22 @@
         },
         mounted: function () {
             var that = this;
-            console.log(window.location.hash.split('=')[1]);
-            that.$http.get("https://service.chemlinked.com/api/v1/coslist/headinfo", {name: "abc"})
+            // console.log(window.location.hash.split('=')[1]);
+            that.$http.get("https://service.chemlinked.com/api/v1/coslist/headinfo", {name: "1"})
                 .then(function (res) {
                     // console.log('11', res.data.data)
                 }, function (error) {
-                    // console.log('1ss')
+                    console.log(error)
                 });
 
-            that.$http.post("https://service.chemlinked.com/api/v1/coslist/search", {name: "abc"}, {emulateJSON: true})
+            that.$http.post('https://service.chemlinked.com/api/v1/coslist/search', {name: '1'}
+                , {headers: {'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'}})
                 .then(function (res) {
-                        // console.log('22', res.data)
-                    }, function (error) {
-                        // console.log('sss')
-                    }
-                );
+                    console.log('postSuccess')
+                }).catch(function (error) {
+                console.log(error);
+            });
+
         },
         methods: {
             dbStore: function () {

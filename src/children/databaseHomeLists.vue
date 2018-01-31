@@ -1,10 +1,10 @@
 <template>
     <div id="databaseHomeLists">
         <el-table @cell-click="cellClickDetail" :data="tableListsData" border style="width: 100%">
-            <el-table-column prop="date" label="Name" className="column1" width="430"></el-table-column>
-            <el-table-column prop="name" label="Implementation date" width="160"></el-table-column>
-            <el-table-column prop="address" label="Status" width="140"></el-table-column>
-            <el-table-column label="Details">
+            <el-table-column prop="date" label="Name" className="column1" width="430" :resizable="false"></el-table-column>
+            <el-table-column prop="name" label="Implementation date" width="160" :resizable="false"></el-table-column>
+            <el-table-column prop="address" label="Status" width="140" :resizable="false"></el-table-column>
+            <el-table-column label="Details" :resizable="false">
                 <template slot-scope="scope">
                     <el-button round size="mini" type="success"
                                @click.stop="enterDetail(scope.$index, scope.row.id)">Enter
@@ -13,7 +13,7 @@
             </el-table-column>
         </el-table>
         <el-pagination background layout="pager" :page-size="10" align="center"
-                       @current-change="dbJumpPages" :total="totalPages">
+                       @current-change="dbFavouriteJumpPages" :total="favouriteTotalPages">
         </el-pagination>
     </div>
 </template>
@@ -22,7 +22,7 @@
         name: 'databaseHomeLists',
         data() {
             return {
-                totalPages:1000,
+                favouriteTotalPages:1000,
                 tableListsData: [
                     {
                         date: 'China November 2017 Non-Compliant Imported Food Data..',
@@ -102,8 +102,8 @@
                     console.log(row.id)
                 }
             },
-            dbJumpPages: function (data) {
-                console.log(data)
+            dbFavouriteJumpPages: function (pageNum) {
+                console.log(pageNum)
             },
             enterDetail: function (index, id) {
                 this.$router.push({path:'/databaseDetail?#id='+id});

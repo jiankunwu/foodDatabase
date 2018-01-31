@@ -39,7 +39,10 @@
             <el-container class="dbHomeMainContainer">
                 <el-aside style="width: 260px;height: 600px;">
                     <el-tree :data="dbHomeTreeData" :props="defaultProps" node-key="id" accordion
-                             :default-expanded-keys="[1]" @node-click="dbHomeNodeClick"></el-tree>
+                             :default-expanded-keys="[1]" @node-click="dbHomeNodeClick" :highlight-current="true"
+                             :expand-on-click-node="false" ref="tree">
+
+                    </el-tree>
                     <div class="dbFavorites" @click="toFavourite">
                         <span class="el-icon-star-on"></span>
                         <span>My favorites</span>
@@ -62,7 +65,6 @@
         name: 'DatabaseHome',
         data() {
             return {
-                favouriteFlag:false,
                 dbSearchText: '',
                 listStatusFlag: false,
                 dbNavStatus: 'Status',
@@ -119,19 +121,16 @@
                 }
             }
         },
+        mounted: function () {
+            this.$refs.tree.setCurrentKey(this.dbHomeTreeData[0].id);
+            this.$router.push({path: '/DatabaseHome'})
+        },
         methods: {
-            changeList:function () {
-                if(this.favouriteFlag){
-                    this.$router.push({path: '/DatabaseHome/databaseHomeLists'});
-                    this.favouriteFlag=false;
-                }
-            },
             toFavourite: function () {
-                this.favouriteFlag=true;
                 this.$router.push({path: '/DatabaseHome/databaseFavourite'})
             },
             dbNavClick: function (data) {
-                this.changeList();
+                this.$router.push({path: '/DatabaseHome/databaseHomeLists'});
                 this.dbNavActiveIndex = data;
             },
             statusChange: function (data) {
@@ -139,7 +138,7 @@
                 this.listStatusFlag = !this.listStatusFlag
             },
             dbHomeNodeClick: function (data) {
-                this.changeList();
+                this.$router.push({path: '/DatabaseHome/databaseHomeLists'});
                 console.log(data.id)
             },
 
@@ -246,10 +245,10 @@
                         margin-top: -11px;
                         cursor: pointer;
                     }
-                    .transitionList{
+                    .transitionList {
                         position: relative;
                     }
-                    .dbTriangle{
+                    .dbTriangle {
                         position: absolute;
                         top: -5px;
                         left: 45%;
@@ -301,12 +300,25 @@
             width: 1115px;
             margin: 55px auto 0;
             > .el-aside {
-                padding: 10px 30px 0 0;
+                padding: 20px 30px 0 0;
                 box-sizing: border-box;
+                .el-tree {
+                    color: #987f1e;
+                }
                 .el-tree-node__children {
                     > div {
                         padding-top: 15px;
                     }
+                }
+                .el-tree--highlight-current {
+                    .el-tree-node.is-current {
+                        > .el-tree-node__content {
+                            background-color: #f0e5d7;
+                        }
+                    }
+                }
+                .el-tree-node__content:hover {
+                    background-color: #f0e5d7;
                 }
                 .dbFavorites {
                     margin-top: 10px;

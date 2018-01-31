@@ -3,15 +3,15 @@
         <h1>Favourite Lists</h1>
         <el-table @cell-click="favouriteDetail" :data="tableFavouriteData" border style="width: 100%"
                   empty-text="Nothing">
-            <el-table-column prop="date" label="Name" className="column1" width="430"></el-table-column>
-            <el-table-column width="170" label="Update Notification">
+            <el-table-column :resizable="false" prop="date" label="Name" className="column1" width="430"></el-table-column>
+            <el-table-column :resizable="false" width="170" label="Update Notification">
                 <template slot-scope="updateScope">
                     <el-switch @change="updateControl($event,updateScope.row.id)" v-model="updateScope.row.switchValue"
                                active-color="#13ce66" inactive-color="#ff4949"></el-switch>
                 </template>
             </el-table-column>
-            <el-table-column prop="name" label="Update Info" width="160"></el-table-column>
-            <el-table-column label="Delete" className="abFavouriteDelete">
+            <el-table-column :resizable="false" prop="name" label="Update Info" width="160"></el-table-column>
+            <el-table-column :resizable="false" label="Delete" className="abFavouriteDelete">
                 <template slot-scope="deleteScope">
                     <el-button class="el-icon-close" type="text" @click="deleteRowId(deleteScope.row.id)"></el-button>
                     <el-dialog top="25vh" title="TIPS" :visible.sync="deleteDialog" width="30%">
@@ -25,6 +25,9 @@
                 </template>
             </el-table-column>
         </el-table>
+        <el-pagination background layout="pager" :page-size="10" align="center"
+                       @current-change="dbJumpPages" :total="totalPages">
+        </el-pagination>
     </div>
 </template>
 <script>
@@ -32,6 +35,7 @@
         name: 'databaseFavourite',
         data() {
             return {
+                totalPages:1000,
                 deleteDialog: false,
                 dbDeleteRowId: -1,
                 tableFavouriteData: [
@@ -93,7 +97,9 @@
                 this.tableFavouriteData = newTableFavouriteData;
                 this.deleteDialog = false
             },
-
+            dbJumpPages: function (pageNum) {
+                console.log(pageNum)
+            },
         }
     }
 </script>
@@ -171,6 +177,9 @@
                     padding: 13px 20px;
                 }
             }
+        }
+        .el-pagination {
+            margin: 30px auto;
         }
     }
 </style>

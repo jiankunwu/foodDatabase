@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Resource from 'vue-resource'
+// import Resource from 'vue-resource'
 import databaseHome from '@/pages/databaseHome'
 import databaseDetail from '@/pages/databaseDetail'
 import myTest from '@/components/myTest'
@@ -8,7 +8,7 @@ import databaseHomeLists from '@/children/databaseHomeLists'
 import databaseFavourite from '@/children/databaseFavourite'
 
 Vue.use(Router);
-Vue.use(Resource);
+// Vue.use(Resource);
 
 export default new Router({
     routes: [
@@ -23,11 +23,11 @@ export default new Router({
                 {
                     path: '/',
                     component: databaseHomeLists
-                },{
+                }, {
                     path: 'databaseHomeLists',
                     name: 'databaseHomeLists',
                     component: databaseHomeLists
-                },{
+                }, {
                     path: 'databaseFavourite',
                     name: 'databaseFavourite',
                     component: databaseFavourite
@@ -37,10 +37,6 @@ export default new Router({
             path: '/databaseDetail',
             name: 'databaseDetail',
             component: databaseDetail
-        }, {
-            path: '/myTest',
-            name: 'myTest',
-            component: myTest
         }
     ]
 })
