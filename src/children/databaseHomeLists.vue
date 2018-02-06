@@ -157,6 +157,20 @@
     }
     .el-pagination {
         margin: 30px auto;
+        .el-pager{
+            li {
+                margin: 0 5px;
+                background-color: #efe0c5;
+                color: #606266;
+                min-width: 30px;
+                border-radius: 2px;
+            }
+            .active {
+                background-color: #e8cd9b;
+                color: #846a39;
+                border: 1px solid #d6b679;
+            }
+        }
     }
 
 }

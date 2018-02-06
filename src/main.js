@@ -6,7 +6,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import foodDatabaseApp from './foodDatabaseApp'
 import router from './router'
 import axios from 'axios'
-
+// 官方不再更新 vue-resource 推荐axios完成 ajax 请求
 Vue.use(ElementUI);
 Vue.config.productionTip = false;
 Vue.prototype.$http= axios;

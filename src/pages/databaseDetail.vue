@@ -13,20 +13,20 @@
                     <ul class="shareLists">
                         <li>
                             <a href="#">
-                                <img src="https://cosmetic.chemlinked.com/sites/default/files/cdn/img/cosme_twitter.png"
-                                     alt="">
+                                <img src="https://cosmetic.chemlinked.com/sites/default/files/cdn/img/cosme_linkedin.png"
+                                     alt="LinkedIn">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="https://cosmetic.chemlinked.com/sites/default/files/cdn/img/cosme_facebook.png"
+                                     alt="Facebook">
                             </a>
                         </li>
                         <li>
                             <a href="#">
                                 <img src="https://cosmetic.chemlinked.com/sites/default/files/cdn/img/cosme_twitter.png"
-                                     alt="">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img src="https://cosmetic.chemlinked.com/sites/default/files/cdn/img/cosme_twitter.png"
-                                     alt="">
+                                     alt="twitter">
                             </a>
                         </li>
                         <li>
@@ -165,23 +165,31 @@
             }
         },
         mounted: function () {
+// ************axios 请求后台数据*****************
             var that = this;
             // console.log(window.location.hash.split('=')[1]);
-            that.$http.get("https://service.chemlinked.com/api/v1/coslist/headinfo", {name: "1"})
+            that.$http.get("https://service.chemlinked.com/api/v1/coslist/headinfo",
+                {name: "1"})
                 .then(function (res) {
                     // console.log('11', res.data.data)
                 }, function (error) {
                     console.log(error)
                 });
-
-            that.$http.post('https://service.chemlinked.com/api/v1/coslist/search', {name: '1'}
-                , {headers: {'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'}})
+            var qs = require('querystring');
+            that.$http.post('https://service.chemlinked.com/api/v1/coslist/search',
+                qs.stringify({
+                    keyword: "CI",
+                    page: 0,
+                    limit: 10
+                }), {
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'}
+                })
                 .then(function (res) {
-                    console.log('postSuccess')
-                }).catch(function (error) {
-                console.log(error);
-            });
-
+                    // console.log(res.data.data)
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
         },
         methods: {
             dbStore: function () {

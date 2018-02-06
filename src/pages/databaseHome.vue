@@ -1,13 +1,13 @@
 <template>
     <div id="databaseHome" @click="listStatusFlag=false">
         <el-container>
-            <el-header class="dbHomeHeader" style="height: 160px;">
+            <el-header class="dbHomeHeader0" style="height: 160px;">
                 <div class="dbHomeHeader">
                     <h1>THE ASIAN FOOD REGULATORY DATABASE</h1>
                     <div>
                         <el-input placeholder="please input name/G8 No./other keyword..."
                                   v-model="dbSearchText"></el-input>
-                        <span class="el-icon-search" style="font-size: 37px; color: goldenrod;"></span>
+                        <span class="el-icon-search" @click="homeNavDoSearch"></span>
                     </div>
                 </div>
                 <div class="dbHomeNav">
@@ -141,7 +141,9 @@
                 this.$router.push({path: '/DatabaseHome/databaseHomeLists'});
                 console.log(data.id)
             },
-
+            homeNavDoSearch: function () {
+                console.log('homeNavDoSearch')
+            }
         }
     }
 </script>
@@ -149,7 +151,7 @@
     #databaseHome {
         $borderColor: #c5a835;
         $textColor: #5a5050;
-        .dbHomeHeader {
+        .dbHomeHeader0 {
             background-color: #8f5806;
             color: #fff;
             position: relative;
@@ -169,7 +171,11 @@
                         margin-top: -20px;
                         width: 40px;
                         height: 40px;
+                        line-height: 40px;
+                        text-align: center;
                         cursor: pointer;
+                        font-size: 30px;
+                        color: goldenrod;
                     }
                 }
             }
@@ -216,7 +222,6 @@
                     }
 
                 }
-
                 > div {
                     display: inline-block;
                     width: 140px;
@@ -260,7 +265,7 @@
                         height: 0;
                     }
                     .showMenu-enter-active {
-                        transition: all .5s;
+                        transition: all .2s linear;
                     }
                     .showMenu-enter-to {
                         height: 78px;

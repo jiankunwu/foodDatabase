@@ -1,14 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import Resource from 'vue-resource'
+
 import databaseHome from '@/pages/databaseHome'
 import databaseDetail from '@/pages/databaseDetail'
-import myTest from '@/components/myTest'
 import databaseHomeLists from '@/children/databaseHomeLists'
 import databaseFavourite from '@/children/databaseFavourite'
 
 Vue.use(Router);
-// Vue.use(Resource);
+
 
 export default new Router({
     routes: [
