@@ -11,11 +11,8 @@
 </script>
 
 <style lang="scss">
-    *{
-        padding: 0;
+    blockquote, body, button, dd, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, hr, input, legend, li, ol, p, pre, td, textarea, th, ul {
         margin: 0;
-    }
-    #foodDatabaseApp {
-
+        padding: 0;
     }
 </style>

@@ -37,7 +37,7 @@
                 </div>
             </el-header>
             <el-container class="dbHomeMainContainer">
-                <el-aside style="width: 260px;height: 600px;">
+                <el-aside style="width: 260px;height: 730px;">
                     <el-tree :data="dbHomeTreeData" :props="defaultProps" node-key="id" accordion
                              :default-expanded-keys="[1]" @node-click="dbHomeNodeClick" :highlight-current="true"
                              :expand-on-click-node="false" ref="tree">
@@ -69,49 +69,79 @@
                 listStatusFlag: false,
                 dbNavStatus: 'Status',
                 dbNavActiveIndex: 0,
-                dbHomeNavData: ['All', 'General', 'Product', 'Hygienic', 'Testing', 'Packing&Transpirtation', 'Other', 'Regulation'],
+                dbHomeNavData: ['All', 'General', 'Product', 'Hygienic', 'Testing', 'Packing & Transportation', 'Other', 'Regulation'],
                 dbStatusData: ['In force', ' To be enforced', 'Invalid',],
                 dbHomeTreeData: [
                     {
                         id: 1,
-                        label: 'All Catogory',
+                        label: 'All category',
                         children: [
                             {
                                 id: 11,
-                                label: 'Milk &Milk products',
+                                label: 'Milk & milk products',
                             }, {
                                 id: 12,
-                                label: 'Oil& oil products',
+                                label: 'Oil & oil products',
                             }, {
                                 id: 13,
-                                label: 'fruits & vegetables',
+                                label: 'Frozen drinks',
                             }, {
                                 id: 14,
-                                label: 'Candy peoducts',
+                                label: 'Fruits & vegetables',
                             }, {
                                 id: 15,
-                                label: 'Bakery food',
+                                label: 'Candy products',
                             }, {
                                 id: 16,
-                                label: 'Meat & Meat products',
+                                label: 'Grain & grain products',
                             }, {
                                 id: 17,
-                                label: 'Milk &Milk products',
+                                label: 'Bakery food',
                             }, {
                                 id: 18,
-                                label: 'Oil& oil products',
+                                label: 'Meat & meat products',
                             }, {
                                 id: 19,
-                                label: 'Feozen & drinks',
+                                label: 'Aquatic & aquatic products',
+                            }, {
+                                id: 110,
+                                label: 'Egg & egg products',
+                            }, {
+                                id: 111,
+                                label: 'Sweeteners',
+                            }, {
+                                id: 112,
+                                label: 'Condiment',
+                            }, {
+                                id: 113,
+                                label: 'Food for special dietary uses',
+                            }, {
+                                id: 114,
+                                label: 'Health food',
+                            }, {
+                                id: 115,
+                                label: 'Beverage',
+                            }, {
+                                id: 116,
+                                label: 'Wine',
+                            }, {
+                                id: 117,
+                                label: 'Food additive',
+                            }, {
+                                id: 118,
+                                label: 'Food contact materials',
+                            }, {
+                                id: 119,
+                                label: 'Food packaging',
                             }, {
                                 id: 120,
-                                label: 'fruits & vegetables',
+                                label: 'Nutritional fortification substances',
                             }, {
                                 id: 121,
-                                label: 'Candy peoducts',
+                                label: 'Infant formula food',
                             }, {
                                 id: 122,
-                                label: 'Bakery food',
+                                label: 'Others',
                             }]
                     }
                 ],
@@ -121,27 +151,28 @@
                 }
             }
         },
-        mounted: function () {
+        mounted() {
             this.$refs.tree.setCurrentKey(this.dbHomeTreeData[0].id);
             this.$router.push({path: '/DatabaseHome'})
         },
         methods: {
-            toFavourite: function () {
+            toFavourite() {
                 this.$router.push({path: '/DatabaseHome/databaseFavourite'})
             },
-            dbNavClick: function (data) {
+            dbNavClick(data) {
                 this.$router.push({path: '/DatabaseHome/databaseHomeLists'});
                 this.dbNavActiveIndex = data;
             },
-            statusChange: function (data) {
-                this.dbNavStatus = data;
-                this.listStatusFlag = !this.listStatusFlag
+            statusChange(status) {
+                this.dbNavStatus = status;
+                this.listStatusFlag = !this.listStatusFlag;
+                console.log(status)
             },
-            dbHomeNodeClick: function (data) {
+            dbHomeNodeClick(data) {
                 this.$router.push({path: '/DatabaseHome/databaseHomeLists'});
                 console.log(data.id)
             },
-            homeNavDoSearch: function () {
+            homeNavDoSearch() {
                 console.log('homeNavDoSearch')
             }
         }
@@ -175,7 +206,10 @@
                         text-align: center;
                         cursor: pointer;
                         font-size: 30px;
-                        color: goldenrod;
+                        color: #c1901f;
+                        &:hover {
+                            color: #e2ad20;
+                        }
                     }
                 }
             }
@@ -299,7 +333,6 @@
                     }
                 }
             }
-
         }
         .dbHomeMainContainer {
             width: 1115px;
@@ -312,7 +345,7 @@
                 }
                 .el-tree-node__children {
                     > div {
-                        padding-top: 15px;
+                        padding-top: 2px;
                     }
                 }
                 .el-tree--highlight-current {

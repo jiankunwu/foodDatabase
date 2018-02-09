@@ -165,7 +165,7 @@
             }
         },
         mounted: function () {
-// ************axios 请求后台数据*****************
+// ************axios 请求后台数据 demo*****************
             var that = this;
             // console.log(window.location.hash.split('=')[1]);
             that.$http.get("https://service.chemlinked.com/api/v1/coslist/headinfo",
@@ -192,7 +192,7 @@
                 });
         },
         methods: {
-            dbStore: function () {
+            dbStore() {
                 this.dbStoreDialog = false;
                 console.log('success')
             }
@@ -265,7 +265,9 @@
                     }
 
                 }
+                >h4{font-size: 17px}
                 > h5 {
+                    font-size: 16px;
                     padding: 0 0 8px 0;
                     box-sizing: border-box;
                     margin-top: 20px;
@@ -314,12 +316,16 @@
                     margin-top: 15px;
                     li {
                         margin: 8px 0;
+                        list-style: none !important;
                     }
 
                     a {
                         text-decoration: none;
                         display: inline-block;
                         margin-left: 30px;
+                        &:hover {
+                            text-decoration: underline;
+                        }
                     }
 
                 }

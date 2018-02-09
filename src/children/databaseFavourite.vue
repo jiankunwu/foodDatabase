@@ -3,7 +3,8 @@
         <h1>Favourite Lists</h1>
         <el-table @cell-click="favouriteDetail" :data="tableFavouriteData" border style="width: 100%"
                   empty-text="Nothing">
-            <el-table-column :resizable="false" prop="date" label="Name" className="column1" width="430"></el-table-column>
+            <el-table-column :resizable="false" prop="date" label="Name" className="column1"
+                             width="430"></el-table-column>
             <el-table-column :resizable="false" width="170" label="Update Notification">
                 <template slot-scope="updateScope">
                     <el-switch @change="updateControl($event,updateScope.row.id)" v-model="updateScope.row.switchValue"
@@ -35,7 +36,7 @@
         name: 'databaseFavourite',
         data() {
             return {
-                totalPages:1000,
+                totalPages: 1000,
                 deleteDialog: false,
                 dbDeleteRowId: -1,
                 tableFavouriteData: [
@@ -74,20 +75,20 @@
             }
         },
         methods: {
-            favouriteDetail: function (row, column, cell, event) {
+            favouriteDetail(row, column, cell, event) {
                 if (column.className === 'column1') {
                     this.$router.push({path: '/databaseDetail?#id=' + row.id});
                     console.log(row.id)
                 }
             },
-            updateControl: function (status, id) {
+            updateControl(status, id) {
                 console.log(status, id)
             },
-            deleteRowId: function (id) {
+            deleteRowId(id) {
                 this.dbDeleteRowId = id;
                 this.deleteDialog = true;
             },
-            deleteRow: function () {
+            deleteRow() {
                 let newTableFavouriteData = [];
                 for (let i = 0; i < this.tableFavouriteData.length; i++) {
                     if (this.tableFavouriteData[i].id !== this.dbDeleteRowId) {
@@ -97,7 +98,7 @@
                 this.tableFavouriteData = newTableFavouriteData;
                 this.deleteDialog = false
             },
-            dbJumpPages: function (pageNum) {
+            dbJumpPages(pageNum) {
                 console.log(pageNum)
             },
         }
@@ -154,7 +155,7 @@
         }
         .el-pagination {
             margin: 30px auto;
-            .el-pager{
+            .el-pager {
                 li {
                     margin: 0 5px;
                     background-color: #efe0c5;
