@@ -167,7 +167,7 @@
         mounted: function () {
 // ************axios 请求后台数据 demo*****************
             var that = this;
-            // console.log(window.location.hash.split('=')[1]);
+// console.log(window.location.hash.split('=')[1]);
             that.$http.get("https://service.chemlinked.com/api/v1/coslist/headinfo",
                 {name: "1"})
                 .then(function (res) {
